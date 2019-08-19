@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <title>Desafio 52 Semanas</title>
+  
+  </head>
+  <body>
+
+    <!-- START STRUCTURE -->
+    <div class="container menu bgreen">
+
+        <!-- START MENU -->
+        <div class="row ">
+          <div class="col-md">
+  
+            <ul class="nav nav-pills">
+              <li class="nav-item">
+                <a class="btn btn-success nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-success nav-link" href="como_funciona.html">Sobre o Desafio</a>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-success nav-link active" href="calcular_desafio.html">Faça as Contas</a>
+              </li>
+            </ul>
+  
+          </div>
+        </div>
+      </div>
+      <!-- END MENU -->
+      <br>
+      <div class="container">
+        <!-- START CONTENT -->
+        <div class="row">
+          <div class="col">
+            <h1>Faça uma simulação</h1>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row justify-content-md-center"> 
+
+          <input type="text" id="amount">
+          <button onclick="calculate()" class="btn btn-success">Calcular</button>
+
+
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-md">
+            <table id="table1"></table>            
+          </div>
+          <div class="col-md">
+            <table id="table2"></table>
+          </div>
+          <div class="col-md">
+            <table id="table3"></table>  
+          </div>
+        </div>
+      <!-- END CONTENT -->
+
+    </div>
+    <!-- END STRUCTURE -->
+
+<!-- <table class="table" id="table">
+              <thead>
+                <tr>
+                  <th scope="col">week</th>
+                  <th scope="col">Deposit</th>
+                  <th scope="col">Safe Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                </tr>
+              </tbody>
+            </table> -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Script da Calculadora -->
+    <script type="text/javascript" src="assets/js/calculadora.js"></script>
+  </body>
+</html>

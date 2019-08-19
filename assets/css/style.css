@@ -1,0 +1,13 @@
+.bgreen{
+    background: #efffef;
+}
+.menu{
+    /* margin: 10px auto; */
+    padding: 10px 0;
+    border-radius: 0 0 10px 10px;
+}
+
+.btn{
+    margin: 0 10px;
+}
+
