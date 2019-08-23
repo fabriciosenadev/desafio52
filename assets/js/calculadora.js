@@ -3,13 +3,16 @@
  */
 function calculate(){
     
-    var amountBase = parseFloat(document.getElementById("amount").value);
+    var amount = document.getElementById("amount").value;
+    var amountFixed = amount.replace(",",".");
+    var amountBase = parseFloat(amountFixed);
     var table = "";
     var htmlTable;
     var safe = deposit = 0;
     var firstWeek = 1;
     var totalWeeks = 52;
     var clearTable = 1;
+    console.log(amountBase);
     // table = clearContent(table);
     
     
