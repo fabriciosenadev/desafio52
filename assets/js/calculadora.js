@@ -7,33 +7,14 @@ function calculate(){
     var amountFixed = amount.replace(",",".");
     var amountBase = parseFloat(amountFixed);
     var table = "";
-    var htmlTable;
+    // var htmlTable;
     var safe = deposit = 0;
     var firstWeek = 1;
     var totalWeeks = 52;
-    var clearTable = 1;
-    console.log(amountBase);
-    // table = clearContent(table);
-    
     
     if(amountBase){
-
-        while (clearTable < 4) {
-
-            if (clearTable == 1) {
-                htmlTable = "table1";
-            }
-            if (clearTable == 2) {
-                htmlTable = "table2";
-            }
-            if (clearTable == 3) {
-                htmlTable = "table3";
-            }
-
-            document.getElementById(htmlTable).innerHTML = table;
-            clearTable++;
-            
-        }
+        
+        clearContent();
         
         for(week = firstWeek; week <= totalWeeks; week++) {
 
@@ -63,11 +44,29 @@ function calculate(){
  * @param {string} content 
  * TODO: need to fix the clear
  */
-function clearContent (content){
+function clearContent (content) {
+    var clearTable = 1;
+    
     if(content){
         content = "";
     }
-    return content;
+
+    while (clearTable < 4) {
+
+        if (clearTable == 1) {
+            htmlTable = "table1";
+        }
+        if (clearTable == 2) {
+            htmlTable = "table2";
+        }
+        if (clearTable == 3) {
+            htmlTable = "table3";
+        }
+
+        document.getElementById(htmlTable).innerHTML = content;
+        clearTable++;
+        
+    }
 }
 
 /**
