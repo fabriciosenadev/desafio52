@@ -29,6 +29,15 @@ function calculate(){
             let tbody = document.createElement('tbody');
 
             var tr = document.createElement('tr');
+            
+            deposit += amountBase;
+            safe += deposit;
+            if (counter == 1 || counter == 19 || counter == 37) {
+                deposit -= amountBase;
+                safe -= deposit;
+
+            }
+
             for (let count = 0; count < 3; count++)
             {
                 if (counter == 1 || counter == 19 || counter == 37) {
@@ -51,9 +60,6 @@ function calculate(){
 
                 } else {
                     
-                    deposit += amountBase;
-                    safe += deposit;
-                    
                     let td = document.createElement('td');
                     
                     switch (count)
@@ -62,10 +68,11 @@ function calculate(){
                             td.innerHTML = week;
                             break;
                         case 1:
-                            td.innerHTML = deposit.toFixed(2);
+                            td.innerHTML = deposit.toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'});
+                            // td.innerHTML = deposit.toFixed(2);
                             break;
                         case 2:
-                            td.innerHTML = safe.toFixed(2);
+                            td.innerHTML = safe.toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'});
                             break;                                    
                     }
                     
@@ -75,7 +82,7 @@ function calculate(){
             }   
             tbody.appendChild(tr);
             table.appendChild(tbody);
-            
+
             if(counter > 1) {
                 week++;
                 counter == 19 || counter == 37 ? week--: null;
