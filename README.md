@@ -1,4 +1,4 @@
-#Desafio das 52 semanas
+# Desafio das 52 semanas
 
 Este projeto foi baseado em um desafio financeiro. 
 Foram utilizadas as tecnologias JavaScript e Bootstrap com as seguintes propostas:
