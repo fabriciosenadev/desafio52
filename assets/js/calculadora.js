@@ -11,7 +11,8 @@ function calculate()
 {    
     let amountFixed = amount.value.replace(",",".");
     let amountBase = parseFloat(amountFixed);
-    let safe = deposit = 0;
+    let safe = 0;
+    let deposit = 0;
     let week = 1;
     const totalRows = 55;
     
@@ -30,12 +31,14 @@ function calculate()
             var tr = document.createElement('tr');
             
             // TODO: need to separate this section to another function
-            deposit += amountBase;
-            safe += deposit;
             if (verifyCount(counter)) 
             {
-                deposit -= amountBase;
-                safe -= deposit;
+                continue;
+            }
+            else
+            {
+                deposit += amountBase;
+                safe += deposit;
             }
             // end section
 
