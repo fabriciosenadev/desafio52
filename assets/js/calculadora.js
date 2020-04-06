@@ -7,141 +7,146 @@ btnCalculate.addEventListener('click', calculate);
 /**
  * Function calculate
  */
-function calculate(){
-    
+function calculate()
+{    
     let amountFixed = amount.value.replace(",",".");
     let amountBase = parseFloat(amountFixed);
     let safe = deposit = 0;
     let week = 1;
-    let totalWeeks = 52;
+    const totalRows = 55;
     
-    if(amountBase){
-        
+    if(amountBase)
+    {    
         clearContent();
         
-        for(let counter = 1; counter <= 55; counter++) 
-        {
-            
+        for(let counter = 1; counter <= totalRows; counter++) 
+        {            
             let htmlTable = selectTable(week);            
-            let table = document.querySelector(`#${htmlTable}`);
-            table.setAttribute('border', '1');
+            let table = document.querySelector(`#table${htmlTable}`);
+            table.setAttribute('class','table table-bordered');
             
-            let tbody = document.createElement('tbody');
+            const tbody = document.createElement('tbody');
 
             var tr = document.createElement('tr');
             
+            // TODO: need to separate this section to another function
             deposit += amountBase;
             safe += deposit;
-            if (counter == 1 || counter == 19 || counter == 37) {
+            if (verifyCount(counter)) 
+            {
                 deposit -= amountBase;
                 safe -= deposit;
-
             }
+            // end section
 
             for (let count = 0; count < 3; count++)
             {
-                if (counter == 1 || counter == 19 || counter == 37) {
+                if (verifyCount(counter)) 
+                {
                     let th = document.createElement('th');
                     
-                    switch (count)
-                    {
-                        case 0:
-                            th.innerHTML = 'Semana';
-                            break;
-                        case 1:
-                            th.innerHTML = "Depositar";
-                            break;
-                        case 2:
-                            th.innerHTML = "Guardado";
-                            break;
-                    }
-                    
-                    tr.appendChild(th);
+                    th.innerHTML = labelRow(count);
 
-                } else {
-                    
+                    tr.appendChild(th);
+                } 
+                else 
+                {                    
                     let td = document.createElement('td');
                     
-                    switch (count)
-                    {
-                        case 0:
-                            td.innerHTML = week;
-                            break;
-                        case 1:
-                            td.innerHTML = deposit.toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'});
-                            // td.innerHTML = deposit.toFixed(2);
-                            break;
-                        case 2:
-                            td.innerHTML = safe.toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'});
-                            break;                                    
-                    }
-                    
-                    tr.appendChild(td);
-                
+                    td.innerHTML = valueRow(count, week, deposit, safe);
+
+                    tr.appendChild(td);                
                 }
             }   
+
             tbody.appendChild(tr);
             table.appendChild(tbody);
 
-            if(counter > 1) {
+            if(counter > 1) 
+            {
                 week++;
                 counter == 19 || counter == 37 ? week--: null;
             }
-        }
-        
+        }        
     }
-
 }
 
 /**
  * function clearContet
- * @param {string} content 
- * TODO: need to fix the clear
  */
-function clearContent (content) {
-    var clearTable = 1;
-    
-    if(content || content == undefined){
-        content = "";
-    }
-
-    while (clearTable < 4) {
-
-        if (clearTable == 1) {
-            htmlTable = "table1";
-        }
-        if (clearTable == 2) {
-            htmlTable = "table2";
-        }
-        if (clearTable == 3) {
-            htmlTable = "table3";
-        }
-
-        document.getElementById(htmlTable).innerHTML = content;
-        clearTable++;
-        
+function clearContent () 
+{
+    for (let clearTable = 1 ; clearTable < 4 ; clearTable++) 
+    {
+        document.getElementById(`table${clearTable}`).innerHTML = '';
     }
 }
 
 /**
  * function selectTable
- * @param {string} week 
+ * @param string week 
  */
-function selectTable (week) {
-    let table;
-
-    if (week <= 17) {
-        table = "table1";
-    }else if (week <= 34) {
-        table = "table2";
-    } else {
-        table = "table3";
+function selectTable (week) 
+{
+    if (week <= 17) 
+    {
+        return "1";
     }
-    
-    return table;
+    else if (week <= 34) 
+    {
+        return "2";
+    } 
+    else 
+    {
+        return "3";
+    }
 }
 
+/** 
+ * function verifyCount
+ * @param int counter
+ * @return int
+*/
+function verifyCount(counter)
+{
+    return counter == 1 || counter == 19 || counter == 37;
+}
 
+/**
+ * labelRow
+ * @param int count
+ * @return string
+ */
+function labelRow(count)
+{
+    switch (count)
+    {
+        case 0:
+            return 'Semana';            
+        case 1:
+            return "Depositar";            
+        case 2:
+            return "Guardado";
+    }
+}
 
-
-
+/**
+ * function valueRow
+ * @param int count
+ * @param int week
+ * @param float deposit
+ * @param float safe
+ * @return string
+ */
+function valueRow(count, week, deposit, safe)
+{
+    switch (count)
+    {
+        case 0:
+            return week;
+        case 1:
+            return deposit.toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'});
+        case 2:
+            return safe.toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'});     
+    }
+}
