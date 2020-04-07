@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
     <title>Desafio 52 Semanas</title>
@@ -68,13 +69,43 @@
 
         <hr>
 
-        <div class="row justify-content-md-center"> 
+        <!-- <div class="row justify-content-md-center">  -->
+        <div class="row"> 
 
-          <input type="text" id="amount" placeholder="Ex:1,10">
-          <button id="calculate" class="btn btn-success">Calcular</button>
+          <div class="col-md">
+
+            <div class="card" style="margin-bottom: 10px;">
+              <div class="card-body">
+                <h5 class="card-title">Como funciona</h5>
+                <p class="card-text">Descubra como funciona este desafio.</p>
+                <a href="como_funciona.html" class="btn btn-sm btn-success" style="margin-bottom: 9px;">Vamos Lá</a>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md">
+
+            <div class="card" style="margin-bottom: 10px;">
+              <div class="card-body">
+                <h5 class="card-title">Faça sua simulação aqui</h5>
+                <p class="card-text">Informe o valor inicial do desafio.</p>
+                <div class="row">
+                  <div class="col-sm" style="margin-bottom: 10px;">
+                    <input type="text" id="amount" placeholder="Ex:1,10">
+                  </div>
+                  <div class="col-sm">
+                    <button id="calculate" class="btn btn-sm btn-success">Calcular</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
 
 
         </div>
+
         <br>
 
         <div class="row" id="showResult">
