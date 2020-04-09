@@ -14,61 +14,57 @@ function calculate()
     let safe = 0;
     let deposit = 0;
     let week = 1;
-    const totalRows = 55;
+    const totalLines = 55;
     
     if(amountBase)
     {    
         clearContent();
         
-        for(let counter = 1; counter <= totalRows; counter++) 
+        for(let line = 1; line <= totalLines; line++) 
         {            
-            let htmlTable = selectTable(week);            
-            let table = document.querySelector(`#table${htmlTable}`);
-            table.setAttribute('class','table table-bordered');
-            
-            const tbody = document.createElement('tbody');
-
-            var tr = document.createElement('tr');
-            
             // TODO: need to separate this section to another function
-            if (verifyCount(counter)) 
-            {
-                continue;
-            }
-            else
+            if (!tableHeader(line)) 
             {
                 deposit += amountBase;
                 safe += deposit;
             }
             // end section
+            
+            const tr = document.createElement('tr');
 
-            for (let count = 0; count < 3; count++)
+            for (let row = 0; row < 3; row++)
             {
-                if (verifyCount(counter)) 
+                if (tableHeader(line)) 
                 {
                     let th = document.createElement('th');
-                    
-                    th.innerHTML = labelRow(count);
+                    th.setAttribute('class','thead');
+                    th.innerHTML = labelRow(row);
 
                     tr.appendChild(th);
-                } 
-                else 
-                {                    
-                    let td = document.createElement('td');
-                    
-                    td.innerHTML = valueRow(count, week, deposit, safe);
 
-                    tr.appendChild(td);                
-                }
-            }   
+                    continue;
+                } 
+
+                const td = document.createElement('td');
+                    
+                td.innerHTML = valueRow(row, week, deposit, safe);
+
+                tr.appendChild(td);                
+            }
+            
+            let htmlTable = selectTable(week);            
+            const table = document.querySelector(`#table${htmlTable}`);
+            table.setAttribute('class','table table-bordered');
+            
+            const tbody = document.createElement('tbody');
 
             tbody.appendChild(tr);
             table.appendChild(tbody);
 
-            if(counter > 1) 
+            if(line > 1) 
             {
                 week++;
-                counter == 19 || counter == 37 ? week--: null;
+                line == 19 || line == 37 ? week--: null;
             }
         }        
     }
@@ -106,23 +102,23 @@ function selectTable (week)
 }
 
 /** 
- * function verifyCount
- * @param int counter
+ * function tableHeader
+ * @param int line
  * @return int
 */
-function verifyCount(counter)
+function tableHeader(line)
 {
-    return counter == 1 || counter == 19 || counter == 37;
+    return line == 1 || line == 19 || line == 37;
 }
 
 /**
  * labelRow
- * @param int count
+ * @param int row
  * @return string
  */
-function labelRow(count)
+function labelRow(row)
 {
-    switch (count)
+    switch (row)
     {
         case 0:
             return 'Semana';            
@@ -135,15 +131,15 @@ function labelRow(count)
 
 /**
  * function valueRow
- * @param int count
+ * @param int row
  * @param int week
  * @param float deposit
  * @param float safe
  * @return string
  */
-function valueRow(count, week, deposit, safe)
+function valueRow(row, week, deposit, safe)
 {
-    switch (count)
+    switch (row)
     {
         case 0:
             return week;
