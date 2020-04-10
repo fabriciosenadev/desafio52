@@ -10,63 +10,64 @@ btnCalculate.addEventListener('click', calculate);
 function calculate()
 {    
     let amountFixed = amount.value.replace(",",".");
-    let amountBase = parseFloat(amountFixed);
+    const amountBase = parseFloat(amountFixed);
     let safe = 0;
     let deposit = 0;
     let week = 1;
-    const totalLines = 55;
+    const totalRows = 55;
     
     if(amountBase)
     {    
         clearContent();
         
-        for(let line = 1; line <= totalLines; line++) 
-        {            
-            // TODO: need to separate this section to another function
-            if (!tableHeader(line)) 
+        for (let row = 1; row <= totalRows; row++)
+        {
+            const div = document.createElement('div');
+    
+            if(tableHeader(row))
+            {
+                div.setAttribute('class','row bg-success text-white');
+            }
+            else
             {
                 deposit += amountBase;
                 safe += deposit;
-            }
-            // end section
-            
-            const tr = document.createElement('tr');
-
-            for (let row = 0; row < 3; row++)
-            {
-                if (tableHeader(line)) 
+    
+                let classValue = 'row';
+                if (row % 2 === 0)
                 {
-                    let th = document.createElement('th');
-                    th.setAttribute('class','thead');
-                    th.innerHTML = labelRow(row);
-
-                    tr.appendChild(th);
-
-                    continue;
-                } 
-
-                const td = document.createElement('td');
-                    
-                td.innerHTML = valueRow(row, week, deposit, safe);
-
-                tr.appendChild(td);                
+                    classValue = 'row bg-light'
+                }
+                div.setAttribute('class',classValue);
             }
-            
-            let htmlTable = selectTable(week);            
-            const table = document.querySelector(`#table${htmlTable}`);
-            table.setAttribute('class','table table-bordered');
-            
-            const tbody = document.createElement('tbody');
+    
+            for(let col = 0 ; col < 3; col++)
+            {
+                const span = document.createElement('span');
+                
+                if(tableHeader(row))
+                {
+                    span.setAttribute('class','col');                
+                    span.innerHTML = labelRow(col);
+                }
+                else
+                {
+                    span.setAttribute('class','col border');
+                    span.innerHTML = valueRow(col, week, deposit, safe);
+                }
+                
+                div.appendChild(span);
+            }
 
-            tbody.appendChild(tr);
-            table.appendChild(tbody);
-
-            if(line > 1) 
+            let sectionNumber = selectTable(week);
+            const section = document.querySelector(`#section${sectionNumber}`);
+            section.appendChild(div);
+    
+            if(!tableHeader(row))
             {
                 week++;
-                line == 19 || line == 37 ? week--: null;
             }
-        }        
+        }
     }
 }
 
@@ -75,9 +76,9 @@ function calculate()
  */
 function clearContent () 
 {
-    for (let clearTable = 1 ; clearTable < 4 ; clearTable++) 
+    for (let clearSection = 1 ; clearSection < 4 ; clearSection++) 
     {
-        document.getElementById(`table${clearTable}`).innerHTML = '';
+        document.getElementById(`section${clearSection}`).innerHTML = '';
     }
 }
 
@@ -103,12 +104,12 @@ function selectTable (week)
 
 /** 
  * function tableHeader
- * @param int line
+ * @param int row
  * @return int
 */
-function tableHeader(line)
+function tableHeader(row)
 {
-    return line == 1 || line == 19 || line == 37;
+    return row == 1 || row == 19 || row == 37;
 }
 
 /**
