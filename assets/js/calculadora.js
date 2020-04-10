@@ -33,27 +33,36 @@ function calculate()
                 deposit += amountBase;
                 safe += deposit;
     
-                let classValue = 'row';
+                let divClassValue = 'row';
                 if (row % 2 === 0)
                 {
                     classValue = 'row bg-light'
                 }
-                div.setAttribute('class',classValue);
+                div.setAttribute('class',divClassValue);
             }
     
             for(let col = 0 ; col < 3; col++)
             {
                 const span = document.createElement('span');
+                span.style.paddingBottom = '5px';
+                span.style.paddingTop = '5px';
                 
                 if(tableHeader(row))
                 {
-                    span.setAttribute('class','col');                
                     span.innerHTML = labelRow(col);
+                    span.setAttribute('class','col text-center');                
                 }
                 else
                 {
-                    span.setAttribute('class','col border');
                     span.innerHTML = valueRow(col, week, deposit, safe);
+
+                    span.style.paddingRight = '0px';
+                    span.style.paddingLeft = '2px';
+                    if(col === 0)
+                    {
+                        span.style.fontWeight = 'bold';
+                    }
+                    span.setAttribute('class', 'col border text-center');
                 }
                 
                 div.appendChild(span);
